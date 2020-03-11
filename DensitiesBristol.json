@@ -1,0 +1,15 @@
+{
+	"materials":{
+		"name":["Pb","Ti","Sr","Zr","Cs","Mn","Fe"],
+		"density":[11.34,4.506,2.64,5.68,1.93,7.43, 7.87],
+		"path":["/dls/i13-1/data/2017/cm16785-2/processing/mt16702-1/processing/vortexProjectionssample2Pb12_57-12_67Test29112017.hdf","/dls/i13-1/data/2017/cm16785-2/processing/mt16702-1/processing/vortexProjectionssample2Ti4_46-4_56Test29112017.hdf","/dls/i13-1/data/2017/cm16785-2/processing/mt16702-1/processing/vortexProjectionssample2Sr14_12-14_22Test29112017.hdf","/dls/i13-1/data/2017/cm16785-2/processing/mt16702-1/processing/vortexProjectionssample2Zr15_72-15_82Test29112017.hdf","/dls/i13-1/data/2017/cm16785-2/processing/mt16702-1/processing/vortexProjectionssample2Cs4.67-4.77Test29112017.hdf","/dls/i13-1/data/2017/cm16785-2/processing/mt16702-1/processing/vortexProjectionssample2Mn5_85-5_95Test29112017.hdf","/dls/i13-1/data/2017/cm16785-2/processing/mt16702-1/processing/vortexProjectionssample2Fe6_35-6_45Test29112017.hdf"]
+	},
+	"outputFolder":{
+		"path":"/dls/i13-1/data/2017/cm16785-2/processing/mt16702-1/processing/Vortex2/"
+	},
+	"absorptionTomo":{
+		"path":"/dls/i13-1/data/2017/cm16785-2/processing/mt16702-1/processing/Excalibur/PCOTomosample2.hdf"	
+	}
+}
+
+
