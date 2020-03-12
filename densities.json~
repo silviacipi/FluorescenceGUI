@@ -1,0 +1,15 @@
+{
+	"materials":{
+		"name":["Pb","Cu","Ir","Fe"],
+		"density":[11.34 ,8.96,22.56,7.87],
+		"path":["/dls/i13-1/data/2020/mg23919-1/processing/Vortex/297293_Pb-10.5-10.6keV.hdf", "/dls/i13-1/data/2020/mg23919-1/processing/Vortex/297293_Cu-8.0-8.1keV.hdf","/dls/i13-1/data/2020/mg23919-1/processing/Vortex/297293_Ir-9.12-9.22keV.hdf","/dls/i13-1/data/2020/mg23919-1/processing/Vortex/297293_Fe-6.35-6.45keV.hdf"]
+	},
+	"outputFolder":{
+		"path":"/dls/i13-1/data/2020/mg23919-1/processing/Vortex/"
+	},
+	"absorptionTomo":{
+		"path":"/dls/i13-1/data/2020/mg23919-1/processing/Vortex/296786_absorption.hdf"	
+	}
+}
+
+
