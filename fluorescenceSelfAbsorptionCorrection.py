@@ -508,8 +508,35 @@ def myRec(obj,continueLoop,pathTot,dataFolder):
     pathTot=pathTot+tempPath
     return continueLoop,temp, pathTot
 
-    
+def findIndexAbove(value,arr): 
+	item2=0
+	index2=len(arr)
+	for index, item in enumerate(arr):
+    		if item > value:
+			if index<index2:
+				index2=index
+				item2=item
+        return index2, item2
    
+
+def findIndexBelow(value,arr):  
+	item2=0
+	index2=0
+	for index, item in enumerate(arr):
+    		if item < value:
+			if index>index2:
+				index2=index
+				item2=item
+	
+        return index2, item2
+
+def interpolateValue(lowX, loxY, highX, highY, wantedX): 
+	wantedY=loxY+(wantedX-lowX)*(highY-loxY)/(highX-lowX)
+	print lowX, loxY, highX, highY, wantedX,wantedY
+	raw_input('interpolated values...')
+	return wantedY
+
+  
 #########For testing function
 if __name__ == "__main__":
     # load material list with density, projection files, absorption file and output file
@@ -556,12 +583,29 @@ if __name__ == "__main__":
 	
     for i in range(len(data["materials"]["name"])):
             for j in range(len(data["materials"]["name"])):
-		print 'setting up mass absorption coefficient of ', listOfMaterials[i].name, " for the energy ", dataLines["materials"][listOfMaterials[j].name]
-                print 'mass absorption For ', listOfMaterials[j].name, 'is', data2[listOfMaterials[i].name][listOfMaterials[j].name]
-                listOfMaterials[i].myDictionary[listOfMaterials[j].name]=data2[listOfMaterials[i].name][listOfMaterials[j].name]
-            listOfMaterials[i].myDictionary["Beam"]=data2[listOfMaterials[i].name]["Beam"]
-        print  'here'
-        print listOfMaterials[i].myDictionary
+		try:
+    			absorption=np.loadtxt(massAttenuationCoefficientsFile[i], skiprows=1)
+			#absorption=np.ndarray(absorption)
+			#print np.shape(absorption)
+			#plt.xscale('log')
+			#plt.plot(absorption[:,0]*1000,absorption[:,1])
+			#plt.show()
+			print 'setting up mass absorption coefficient of ', listOfMaterials[i].name, " for the energy ", dataLines["materials"][listOfMaterials[j].name]
+			energyLine=float(dataLines["materials"][listOfMaterials[j].name])
+			indexAbove,itemAbove=findIndexAbove(energyLine,absorption[:,0]*1000)
+			indexBelow,itemBelow=findIndexBelow(energyLine,absorption[:,0]*1000)
+			absorptionCoef=interpolateValue(itemBelow, absorption[indexBelow,1], itemAbove, absorption[indexAbove,1], energyLine)
+                	listOfMaterials[i].myDictionary[listOfMaterials[j].name]=absorptionCoef
+			print absorptionCoef
+		except:
+			print 'mass attenuation coefficent file for ',data["materials"]["name"][i] ,'not found'
+	    energyLine=float(dataLines["materials"]["Beam"])
+	    indexAbove,itemAbove=findIndexAbove(energyLine,absorption[:,0]*1000)
+	    indexBelow,itemBelow=findIndexBelow(energyLine,absorption[:,0]*1000)
+	    absorptionCoef=interpolateValue(itemBelow, absorption[indexBelow,1], itemAbove, absorption[indexAbove,1], energyLine)
+            listOfMaterials[i].myDictionary["Beam"]=absorptionCoef
+            print  'here'
+            print listOfMaterials[i].myDictionary
     raw_input('finished loading material properties: Press enter to continue...')
     '''
     
